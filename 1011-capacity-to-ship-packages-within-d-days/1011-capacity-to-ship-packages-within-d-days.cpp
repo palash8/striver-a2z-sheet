@@ -25,13 +25,11 @@ public:
         {
             high+=weights[i];
         }
-        int ans=0;
         while(low<=high)
         {
             int mid=(low+high)/2;
             if(check(weights,mid,days))
             {
-                ans=mid;
                 high=mid-1;
             }
             else
