@@ -1,1 +1,1 @@
-​
+This question is much similar to the coding ninjas check if pallindrome question in codehelp string video
