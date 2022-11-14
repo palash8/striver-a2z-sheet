@@ -29,7 +29,7 @@ public:
 	        else
 	        l=mid+1;
 	   }
-	   return r%n;
+	   return r;
 	}
 
 };
