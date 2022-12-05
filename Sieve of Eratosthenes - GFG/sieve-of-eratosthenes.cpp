@@ -7,6 +7,7 @@ using namespace std;
 class Solution
 {
 public:
+//it does not solve cases for n=prime number and n=0,1 that i solved in leetcode
     vector<int> sieveOfEratosthenes(int N)
     {
         // Write Your Code here
