@@ -112,7 +112,9 @@ struct Node{
 /*  Function which returns the  root of 
     the flattened linked list. */
 Node *merge2list(Node *a,Node*b)
-{
+{   //merging two list 
+    //one of the important thing 2 note here is that temp is pointer to new node as well as res 
+    //is a pointer which points to at new node,but later on below temp shifts to other nodes
     Node*temp=new Node(0);
     Node*res=temp;
     while(a!=NULL && b!=NULL)
@@ -130,6 +132,7 @@ Node *merge2list(Node *a,Node*b)
             b=b->bottom;
         }
     }
+    //if a or b reach NULL Then copu the other linked list as temp bottom
     if(a)temp->bottom=a;
     else
     temp->bottom=b;
@@ -138,10 +141,11 @@ Node *merge2list(Node *a,Node*b)
 Node *flatten(Node *root)
 {
    // Your code here
+   //if root is null and when there is only one linked list or last linked list return root
    if(root == NULL || root->next==NULL)return root;
-   
+   //recursively calling till we reach last linked list
    root->next=flatten(root->next);
-   
+   //merging the 2 linked list into one 
    root=merge2list(root,root->next);
    
    return root;
