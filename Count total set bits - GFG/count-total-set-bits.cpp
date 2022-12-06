@@ -24,9 +24,14 @@ class Solution{
         // Your logic here
        if(n==0)
        return 0;
+       //find the largest power of 2 less than n
        int x=largest_2x(n);
+       //now when we got largest power 2 we have to find set bits in the numbers from 0 to largest
+       //power of 2 leass than x,that can be done by formula 2^(x-1)*x;
        int stterm=(1<<(x-1))*x;
+       //now for calculatinf for left numbers we get that by below formula just for leftmost bits
        int ndterm=n-(1<<x)+1;
+       //now if we apply  this we remove the leftmost and check for remaining numbers
        int ans=stterm+ndterm+countSetBits(ndterm-1);
        return ans;
     }
