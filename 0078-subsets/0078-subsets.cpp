@@ -1,5 +1,6 @@
 class Solution {
 public:
+    //aditya verma approach ,solve uptil input/nums become empty
     void solve( vector<int>nums, vector<int>output, vector<vector<int>>&ans)
     {
         
