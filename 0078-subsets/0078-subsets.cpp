@@ -1,23 +1,28 @@
-#include <bits/stdc++.h>
 class Solution {
 public:
-    vector<vector<int>> subsets(vector<int>& nums) {
-        vector<int>a;
-        vector<vector<int>>b;
-        int n=nums.size();
-        int power=pow(2,n);
-        for(int counter=0;counter<power;counter++)
+    void solve( vector<int>nums, vector<int>output,int i, vector<vector<int>>&ans)
+    {
+        //base case
+        if(i>=nums.size())
         {
-            for(int j=0;j<n;j++)
-            {
-                if((counter&(1<<j))!=0)
-                    a.push_back(nums[j]);
-            }
-            b.push_back(a);
-            a.clear();
-            
+            ans.push_back(output);
+            return;
         }
-        return b;
+        //exclude
+        solve(nums,output,i+1,ans);
+        
+        //include
+        int element=nums[i];
+        output.push_back(element);
+        solve(nums,output,i+1,ans);
+  }
+    vector<vector<int>> subsets(vector<int>& nums) {
+        vector<int>output;
+        vector<vector<int>>ans;
+        int index=0;
+        solve(nums,output,index,ans);
+        return ans;
+        
         
     }
 };
