@@ -1,8 +1,11 @@
 class Solution {
 public:
+    //anuj bhaiya approach video
     int trap(vector<int>& height) {
         int n=height.size();
         int sum=0;
+        //declare 2 vectors for storing leftmost and rightmost maximum height,by takinf left from
+        //starting and right from end
         vector<int>left(n,0);
         vector<int>right(n,0);
         left[0]=height[0];
@@ -15,6 +18,8 @@ public:
         {
             right[i]=max(right[i+1],height[i]);
         }
+        //now when you get both the maximum height for a particular element in left and right
+        //just use the formula below
         for(int i=0;i<n;i++)
         {
             sum+=(min(left[i],right[i])-height[i]);
