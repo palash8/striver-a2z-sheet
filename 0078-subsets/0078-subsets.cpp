@@ -10,15 +10,15 @@ public:
             ans.push_back(output);
             return;
         }
-        vector<int>output1=output;
-        vector<int>output2=output;
-        //include
-        output2.push_back(nums[0]);
+      /*  vector<int>output1=output;
+        vector<int>output2=output;*/
+        int element=nums[0];
         nums.erase(nums.begin()+0);
-        solve(nums,output2,ans);
-        
         //exclude
-        solve(nums,output1,ans);
+        solve(nums,output,ans);
+        //include
+        output.push_back(element);
+        solve(nums,output,ans);
         return;
   }
     vector<vector<int>> subsets(vector<int>& nums) {
