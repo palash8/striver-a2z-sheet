@@ -1,5 +1,6 @@
 class Solution {
 public:
+    //very nice explanation by striver do watch the video
     void find(vector<vector<int>>&ans,vector<int>&ds,int i,vector<int>&arr,int target)
     {
         if(i==arr.size())
