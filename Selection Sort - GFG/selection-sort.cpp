@@ -21,15 +21,18 @@ class Solution
     void selectionSort(int arr[], int n)
     {
        //code here
-       int k=n;
-       while(k--)
-       {
-          for(int i=0;i<n-1;i++)
-          {
-              if(arr[i]>arr[i+1])
-              swap(arr[i],arr[i+1]);
-          }
-       }
+     for(int i=0;i<n-1;i++)
+     {
+         int minindex=i;
+         
+         for(int j=i+1;j<n;j++)
+         {
+            if(arr[j]<arr[minindex])
+            minindex=j;
+         }
+         if(minindex!=i)
+         swap(arr[i],arr[minindex]);
+     }
     }
 };
 
