@@ -17,7 +17,7 @@ void swap(int *xp, int *yp)
 
 // } Driver Code Ends
 //User function Template for C++
-
+//RECURSSIVE BUBBLE SORT
 class Solution
 {
     public:
@@ -25,15 +25,25 @@ class Solution
     void bubbleSort(int arr[], int n)
     {
         // Your code here
-        int k=n;
-       while(k--)
-       {
-          for(int i=0;i<n-1;i++)
+        //base case
+        if(n==1)
+        return;
+        //declaing count to check if array is alerady sorted
+        int count=0;
+        //running loop for fixing one element largest at the last
+        for(int i=0;i<n-1;i++)
           {
               if(arr[i]>arr[i+1])
-              swap(arr[i],arr[i+1]);
+              {
+                swap(arr[i],arr[i+1]);
+                count++;
+              }
           }
-       }
+        //return if alerady sorted  
+       if(count==0)
+       return;
+       //ecurssively calling for n-1 eleemnts
+       bubbleSort(arr,n-1);
     }
 };
 
