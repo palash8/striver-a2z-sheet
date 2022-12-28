@@ -10,7 +10,7 @@ public:
         for(int i=0; i<n; i++){
             int pts = 0;
             string s = report[i], temp = s.substr(0, 1);
-            for(int i=1; i<(int)s.length(); i++){
+            for(int i=1; i<s.size(); i++){
                 if(s[i] == ' '){
                     if(pos.find(temp) != pos.end()){
                         pts += 3;
