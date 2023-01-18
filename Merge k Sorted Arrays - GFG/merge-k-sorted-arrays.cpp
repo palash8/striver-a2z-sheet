@@ -17,11 +17,11 @@ for (int i=0; i < size; i++)
 class data{
     public:
     int val,apos,vpos;
-    data(int v,int ap,int vp)
+    data(int v,int api,int vpi)
     {
         val=v;
-        apos=ap;
-        vpos=vp;
+        apos=api;
+        vpos=vpi;
     }
 };
 struct mycomp{
