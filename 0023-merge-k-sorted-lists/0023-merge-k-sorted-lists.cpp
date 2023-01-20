@@ -8,62 +8,36 @@
  *     ListNode(int x, ListNode *next) : val(x), next(next) {}
  * };
  */
+class mycompare{
+	public:
+	bool operator()(const ListNode* a,const ListNode* b){
+        return (a->val>b->val);
+        }
+};
+	
 class Solution {
-    struct node {
-        ListNode *curr;    //Current node
-        int idx;    //List index number
-        node(ListNode *a,int b)
+	public:
+	ListNode* mergeKLists(vector<ListNode*>& lists) {
+        ListNode *head=new ListNode(0);
+        ListNode *temp=head;
+        priority_queue<ListNode*,vector<ListNode*>,mycompare> pq;
+        for(int i=0;i<lists.size();i++)
         {
-            curr = a;
-            idx = b;
+            if(lists[i]!=NULL)
+             pq.push(lists[i]);
         }
-    };
-    struct compare {
-    bool operator()(node a, node b)
-    {
-        return a.curr->val >b.curr->val;
+
+        while(!pq.empty())
+        {
+            auto least=pq.top();
+            pq.pop();
+            temp->next=least;
+            temp=temp->next;
+            if(least->next)
+                pq.push(least->next);
+        }
+           
+        return head->next;
     }
 };
-public:
-    ListNode* mergeKLists(vector<ListNode*>& lists) {
-        int k = lists.size();
-        if(k==0)
-            return NULL;
-        ListNode *head,*tail;
-        head=tail=NULL;
-        priority_queue<node,vector<node>,compare> heap;
-        vector<ListNode*> ptr(k);   //Current node ptrs for all the lists
-        //Assign all the current ptrs and BUILD_HEAP
-        for(int i=0;i<k;++i)
-        {
-            ptr[i]=lists[i];
-            if(ptr[i]!=NULL)
-                heap.push(node(ptr[i],i));
-        }
         
-        if(heap.empty())
-            return NULL;
-        //Insert 1st node
-        head=tail=heap.top().curr;
-        int idx = heap.top().idx;
-        heap.pop();
-        ptr[idx]=ptr[idx]->next;
-        if(ptr[idx])    //Push newly pointed node if not NULL
-            heap.push(node(ptr[idx],idx));
-        
-        //Make list with rest of the nodes
-        while(!heap.empty())
-        {
-            ListNode *temp=heap.top().curr; //Pop root node
-            idx=heap.top().idx;
-            heap.pop();
-            
-            tail->next=temp;    //Add newnode to list
-            tail=tail->next;
-            ptr[idx]=ptr[idx]->next;    //Update current pointer
-            if(ptr[idx])   //Push newly pointed node if not NULL
-                heap.push(node(ptr[idx],idx));
-        }
-        return head;
-    }
-};
