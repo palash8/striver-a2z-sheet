@@ -17,7 +17,7 @@ public:
         string tmpstr="";
         for(int i=index;i<s.length() && temp.size()<4;i++)
         {
-            if(s[i]-'0'>9)continue;
+            //if(s[i]-'0'>9)continue;
             tmpstr+=s[i];
             int tempint=stoi(tmpstr);
             if(0<=tempint && tempint<=255)
