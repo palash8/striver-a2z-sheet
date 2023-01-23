@@ -6,6 +6,7 @@ public:
         //counts outdegree of a person or node 
 		//outdegree means number of nodes that are trusted by given specific node 
         vector<int>out(n+1,0);
+        //above representation stores value from 0 to n
         
         //counts indegree of a person or node 
 		//indegree means number of nodes that trusts a given specific node
