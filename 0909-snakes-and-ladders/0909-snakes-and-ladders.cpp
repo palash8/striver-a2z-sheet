@@ -1,8 +1,14 @@
 class Solution {
 public:
+    //HELP FROM CODEBIX YOUTUBE CHANNEL
     int arr[2]={0};
     int* findCoordinates(int curr, int n) 
     {
+        //formula for finding coordinates
+        //for Row= n-(curr-1)/n-1
+        //for Column=(curr-1) % n
+             //if row and n are even then column has to go through n-1-c as new column value
+             //if not then column is same as the above formuls no alterations
         int r = n - (curr - 1) / n-1;
         int c = (curr - 1) % n;
         if (r % 2 == n % 2) 
