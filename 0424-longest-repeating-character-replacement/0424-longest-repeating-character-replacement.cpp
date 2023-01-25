@@ -1,5 +1,6 @@
 class Solution {
 public:
+    //NEETCODE SOLUTION in python but good explanation,An upgraded version of max consecutive ones III
     int characterReplacement(string s, int k) {
         int n=s.length();
         int i=0;//->window start
