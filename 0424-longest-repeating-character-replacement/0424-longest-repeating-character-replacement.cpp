@@ -19,7 +19,7 @@ public:
                 mp[s[i]]--;
                 i++;// shrinking the window
             }
-            curr_len=j-i+1;// just in case i is changed
+           curr_len=j-i+1;// just in case i is changed
             ans=max(ans,curr_len);
             j++;
         }
