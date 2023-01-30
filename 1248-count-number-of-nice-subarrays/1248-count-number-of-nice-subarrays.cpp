@@ -1,35 +1,33 @@
 class Solution {
 public:
-    //solved by prefix sum
-    //can also be solved by sliding window
+    //solved by sliding window
     int numberOfSubarrays(vector<int>& v, int k) {
-        
-         unordered_map<int ,int> m;
-          
-        for(int i=0;i<v.size();++i)
+        for(int i=0;i<v.size();i++)
         {
-            if(v[i]&1)
+            if(v[i]%2)
                 v[i]=1;
-            
             else
                 v[i]=0;
         }
-        
-        int sum=0,i,cnt=0;
-        for(i=0;i<v.size();++i)
+        return atmostsum(v,k)-atmostsum(v,k-1);
+     }
+    int atmostsum(vector<int>&v,int k)
+    {
+        int i=0,j=0;
+        int sum=0,result=0;
+        while(j<v.size())
         {
-            sum+=v[i];
-            if(sum==k)
-                cnt++;
+            sum+=v[j];
             
-            if(m.find(sum-k)!=m.end())
-                cnt+=m[sum-k];
+            while(sum>k)
+            {
+                sum-=v[i];
+                i++;
+            }
             
-            m[sum]++;
+            result+=j-i+1;
+            j++;
         }
-        
-        return cnt;
-        
-        
+        return result;
     }
 };
