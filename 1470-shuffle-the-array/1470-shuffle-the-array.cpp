@@ -1,12 +1,21 @@
 class Solution {
 public:
+    //optimized approach
+    //read the article:-https://leetcode.com/problems/shuffle-the-array/discuss/1314638/JAVA-C%2B%2B-%3A-Simple-or-O(1)-Space-In-Place-or-100-Faster-or-Efficient-or-Explained
     vector<int> shuffle(vector<int>& nums, int n) {
-        vector<int>ans;
-        for(int i=0,j=n;i<n or j<nums.size();i++,j++)
-        {
-            ans.push_back(nums[i]);
-            ans.push_back(nums[j]);
+        
+        int len = nums.size();
+        
+        for(int i = n; i < len; i++) {
+            nums[i] = (nums[i] << 10) | nums[i - n];
         }
-        return ans;
+        
+        int index = 0;
+        for(int i = n; i < len; i++, index += 2) {
+            nums[index] = nums[i] & 1023;
+            nums[index + 1] = nums[i] >> 10;
+        }
+        
+        return nums;
     }
-};
+};  
