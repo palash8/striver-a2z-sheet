@@ -1,21 +1,22 @@
 class Solution {
 public:
-    //optimized approach
-    //read the article:-https://leetcode.com/problems/shuffle-the-array/discuss/1314638/JAVA-C%2B%2B-%3A-Simple-or-O(1)-Space-In-Place-or-100-Faster-or-Efficient-or-Explained
     vector<int> shuffle(vector<int>& nums, int n) {
         
         int len = nums.size();
         
-        for(int i = n; i < len; i++) {
-            nums[i] = (nums[i] << 10) | nums[i - n];
+		// to store the pair of numbers in right half of the original array
+        for(int i = n; i < nums.size(); i++) {
+            nums[i] = (nums[i] * 1024) + nums[i - n];
         }
         
         int index = 0;
-        for(int i = n; i < len; i++, index += 2) {
-            nums[index] = nums[i] & 1023;
-            nums[index + 1] = nums[i] >> 10;
+		// to retrive values from the pair of numbers and placing those retrieved value at their desired position
+        for(int i = n; i < nums.size(); i++, index += 2) {
+            nums[index] = nums[i] % 1024;
+            nums[index + 1] = nums[i] / 1024;
         }
         
         return nums;
+        
     }
-};  
+};
