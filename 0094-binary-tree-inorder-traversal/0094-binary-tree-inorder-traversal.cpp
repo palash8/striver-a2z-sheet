@@ -14,10 +14,7 @@ public:
      vector<int> x;
     vector<int> inorderTraversal(TreeNode* root) {
        
-        if(root == NULL){
-            return x;
-        }
-        else
+        if(root)
         {
            inorderTraversal(root->left);  //left subtree
            x.push_back(root->val);      //pushing value of root to ans
