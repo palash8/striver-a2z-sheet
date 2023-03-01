@@ -14,7 +14,7 @@ public:
             }
         }*/
         //Method 2
-        stable_partition(nums.begin(),nums.end(),[](int i){return i;});
+        stable_partition(nums.begin(),nums.end(),[](int i){return i!=0;});
         
     }
 };
