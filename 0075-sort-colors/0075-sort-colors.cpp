@@ -1,25 +1,25 @@
 class Solution {
 public:
-    void sortColors(vector<int>& nums) {
-        int l=0,m=0,r=nums.size()-1;
-        while(m<=r)
+    void sortColors(vector<int>& nums)
+    {
+        //3 way partioning
+        int i=0,j=0,k=nums.size()-1;
+        
+        while(j<=k)
         {
-            if(nums[m]==0)
+            if(nums[j]<1)
             {
-                swap(nums[l],nums[m]);
-                l++;
-                m++;
+                swap(nums[i],nums[j]);
+                i++;
+                j++;
             }
-            else if(nums[m]==1)
+            else if(nums[j]>1)
             {
-                m++;
+                swap(nums[j],nums[k]);
+                k--;
             }
-            else if(nums[m]==2)
-            {
-                swap(nums[m],nums[r]);
-                r--;
-            
-            }
+            else
+                j++;
         }
         
     }
