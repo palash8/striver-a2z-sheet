@@ -12,7 +12,7 @@ class Solution{
         //same question is median of two sorted arrays
     if(n>m) 
     {
-        return kthElement(arr2, arr1, m, n, k); 
+        return kthElement(arr2, arr1,m,n,k); 
     }
     int low = max(0,k-m), high = min(k,n);
         
