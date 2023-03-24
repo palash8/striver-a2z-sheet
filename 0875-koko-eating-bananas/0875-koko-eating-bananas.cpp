@@ -1,27 +1,27 @@
 class Solution {
 public:
-    bool totalhours(vector<int>piles,int k,int h)
+    bool hourcount(vector<int>&piles,int k,int h)
     {
-        int hours=0;
-        for(int pile:piles)
+        long long hours=0;
+        for(int i:piles)
         {
-            int div=pile/k;
+            int div=i/k;
             hours+=div;
-            if(pile%k!=0)hours++;
+            if(i%k!=0)hours++;
         }
-        return hours>h;
+        return hours<=h;
     }
-    int minEatingSpeed(vector<int>& piles, int h) {
-        long long l=1;
-        long long r=10000000000000;
+    int minEatingSpeed(vector<int>& piles,int h) {
+        long long l=1,r=1000000000000;
         while(l<=r)
         {
-            int mid=(l+r)/2;
-            if(totalhours(piles,mid,h))
-               l=mid+1 ;
-            else
+            int mid=l+(r-l)/2;
+            if(hourcount(piles,mid,h))
                 r=mid-1;
+            else
+                l=mid+1;
         }
         return l;
+        
     }
 };
