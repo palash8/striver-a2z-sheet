@@ -8,7 +8,12 @@ class Solution{
     public:
     int kthElement(int arr1[], int arr2[], int n, int m, int k)
     {
-        
+        //strivers approach
+        //same question is median of two sorted arrays
+    if(n>m) 
+    {
+        return kthElement(arr2, arr1, m, n, k); 
+    }
     int low = max(0,k-m), high = min(k,n);
         
     while(low <= high) {
@@ -30,7 +35,7 @@ class Solution{
         }
     }
     return 1; 
-}
+    }
 };
 
 //{ Driver Code Starts.
