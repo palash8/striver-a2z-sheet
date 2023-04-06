@@ -10,17 +10,27 @@
  */
 class Solution {
 public:
-    ListNode* reverseList(ListNode* head) {
-        if(head==NULL || head->next==nullptr)
+    ListNode* reverseList(ListNode* head) 
+    {
+        //cases with less than 2 nodes
+        if(head==nullptr or head->next==nullptr)
         {
             return head;
         }
-        ListNode *newhead=reverseList(head->next);
-         ListNode *nexthead=head->next;
-        nexthead->next=head;
-        head->next=NULL;
-        return newhead;
+        //other cases require use of 3 pointers
+        ListNode *temp=head;
+        ListNode *prev=nullptr;
+        ListNode *forward=temp->next;
         
+        while(forward!=nullptr)
+        {
+            temp->next=prev;
+            prev=temp;
+            temp=forward;
+            forward=forward->next;
+        }
+        temp->next=prev;
+        return temp;
         
     }
 };
