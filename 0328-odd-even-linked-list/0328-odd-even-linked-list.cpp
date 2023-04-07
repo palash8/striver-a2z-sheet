@@ -10,12 +10,15 @@
  */
 class Solution {
 public:
-    ListNode* oddEvenList(ListNode* head) {
-        if(!head || !head->next||!head->next->next)return head;
+    ListNode* oddEvenList(ListNode* head) 
+    {
+        if(!head || !head->next || !head->next->next)return head;
+        
         ListNode *odd=head;
         ListNode *even=head->next;
         ListNode *evenstart=head->next;
-        while(odd->next && even->next)
+        
+        while(odd->next and even->next)
         {
             odd->next=even->next;
             even->next=odd->next->next;
@@ -24,6 +27,5 @@ public:
         }
         odd->next=evenstart;
         return head;
-        
     }
 };
