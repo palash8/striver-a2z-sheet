@@ -4,6 +4,7 @@ using namespace std;
 
 
 // } Driver Code Ends
+
 class Solution {
   public:
     bool isStraightHand(int N, int groupSize, vector<int> &hand) {
