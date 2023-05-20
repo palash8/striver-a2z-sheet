@@ -1,30 +1,29 @@
 class Solution {
 public:
-    //very nice explanation by striver do watch the video
-    void find(vector<vector<int>>&ans,vector<int>&ds,int i,vector<int>&arr,int target)
+    void solve(int i,vector<vector<int>>&ans,vector<int>&candidates,int target,vector<int>&res)
     {
-        if(i==arr.size())
+        //base case
+        if(i==candidates.size())
         {
             if(target==0)
             {
-                ans.push_back(ds);
+                ans.push_back(res);
             }
             return;
         }
-        //pickup element
-        if(arr[i]<=target)
+        if(candidates[i]<=target)
         {
-            ds.push_back(arr[i]);
-            find(ans,ds,i,arr,target-arr[i]);
-            ds.pop_back();
+            res.push_back(candidates[i]);
+            solve(i,ans,candidates,target-candidates[i],res);
+            res.pop_back();
         }
-        find(ans,ds,i+1,arr,target);
+        solve(i+1,ans,candidates,target,res);
     }
     vector<vector<int>> combinationSum(vector<int>& candidates, int target) {
         vector<vector<int>>ans;
-        vector<int>ds;
-        find(ans,ds,0,candidates,target);
+        vector<int>res;
+        int n=candidates.size();
+        solve(0,ans,candidates,target,res);
         return ans;
-        
     }
 };
