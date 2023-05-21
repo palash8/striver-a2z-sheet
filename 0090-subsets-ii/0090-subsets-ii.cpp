@@ -5,7 +5,7 @@ public:
         ans.push_back(ds);
         for(int i=index;i<nums.size();i++)
         {
-            if(i!=index && nums[i]==nums[i-1])continue;
+            if(i>index && nums[i]==nums[i-1])continue;
             ds.push_back(nums[i]);
             solve(i+1,ans,ds,nums);
             ds.pop_back();
@@ -15,9 +15,9 @@ public:
 
     vector<vector<int>> subsetsWithDup(vector<int>& nums) {
         vector<vector<int>>ans;
-        vector<int>ds;
+        vector<int>res;
         sort(nums.begin(),nums.end());
-        solve(0,ans,ds,nums);
+        solve(0,ans,res,nums);
         return ans;
     }
 };
