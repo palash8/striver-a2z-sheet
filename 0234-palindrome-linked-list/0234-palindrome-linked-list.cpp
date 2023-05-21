@@ -10,7 +10,6 @@
  */
 class Solution {
 public:
-   
     ListNode* reverse(ListNode* ptr) {
     ListNode* pre=NULL;
     ListNode* nex=NULL;
@@ -21,7 +20,7 @@ public:
         ptr=nex;
     }
     return pre;
-}
+    }    
     bool isPalindrome(ListNode* head) {
         if(head==NULL||head->next==NULL) return true;
         
@@ -33,8 +32,11 @@ public:
         slow = slow->next;
         fast = fast->next->next;
        }
-       slow->next = reverse(slow->next);
+        
+        slow->next=reverse(slow->next);
+        
        slow = slow->next;
+        
        ListNode* dummy = head;
        while(slow!=NULL) 
         {
@@ -43,5 +45,6 @@ public:
            slow = slow->next;
         }
         return true;
-     }
+        
+    }
 };
