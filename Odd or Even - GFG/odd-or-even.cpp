@@ -7,14 +7,10 @@ class Solution{
 public:
     string oddEven(int N){
         // code here 
-        char str[4]="odd";
-        char str2[5]="even";
-        if(N%2==0)
-        return str2;
-        return str;
-        
-        
-        
+        if(N&1)
+        return "odd";
+        else
+        return "even";
     }
 };
 
