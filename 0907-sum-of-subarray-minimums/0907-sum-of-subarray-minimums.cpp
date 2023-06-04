@@ -1,55 +1,44 @@
 class Solution {
 public:
     int sumSubarrayMins(vector<int>& arr) {
-        
-        stack<int> s;
+        stack<int>s1,s2;
         int n=arr.size();
+       vector<int>prev_smaller(n,0);
+       vector<int>next_smaller(n,0);
         
-        vector<int> l,r;
-        int mod=pow(10,9)+7;
-        //for left it is strictly greater and equal to ,to avoid duplicates
-        for(int i=0;i<arr.size();i++){
-            while(!s.empty() && arr[s.top()]>=arr[i]){
-                s.pop();
-            }
-            if(s.empty()){
-                l.push_back(-1);
-            }
-            else{
-                l.push_back(s.top());
-            }
-            s.push(i);
+        for(int i=0;i<n;i++)
+        {
+            prev_smaller[i]=i;
+            next_smaller[i]=n-i-1;
         }
         
-        while(!s.empty()) s.pop();
-        //for right it is just strictly greater,to avoid duplicates
-        for(int i=n-1;i>=0;i--){
-            while(!s.empty() && arr[s.top()]>arr[i]){
-                s.pop();
-            }
-            if(s.empty()){
-                r.push_back(arr.size());
-            }
-            else{
-                r.push_back(s.top());
-            }
-            s.push(i);
+        //calculating previous smaller
+        for(int i=0;i<n;i++)
+        {
+            while(!s1.empty() and arr[s1.top()]>=arr[i])
+                s1.pop();
+            if(!s1.empty())
+                prev_smaller[i]=i-s1.top()-1;
+            s1.push(i);
         }
         
-        reverse(r.begin(),r.end());
-
+        //calculating next smaller
+        for(int i=n-1;i>=0;i--)
+        {
+            while(!s2.empty() and arr[s2.top()]>arr[i])
+                s2.pop();
+            if(!s2.empty())
+                next_smaller[i]=s2.top()-i-1;
+            s2.push(i);
+        }
+        
         long long ans=0;
-        
-        for(int i=0;i<arr.size();i++){
-            long long int k=i-(l[i]+1)+r[i]-1-i+1;
-            
-            long long int p=(long long )(i-(l[i]+1)) * (long long )(r[i]-1-i);
-            k+=p;
-            ans+=(arr[i]*k)%mod;
-            ans=ans%mod;
+        int mod=1e9+7;
+        for(int i=0;i<n;i++)
+        {
+            ans+=((long long)arr[i]*(long long)(prev_smaller[i]+1)*(long long)(next_smaller[i]+1));
+            ans%=mod;
         }
-        
         return ans;
-        
     }
 };
